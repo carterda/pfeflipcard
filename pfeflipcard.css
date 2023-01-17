@@ -1,0 +1,239 @@
+:root {
+  --animation-speed: 2s;
+  --color-bg-primary: #E4F3FF;
+  --color-bg-secondary: #CDE3FE;
+  --color-bg-yellow: #F8DF5A;
+  --color-bg-grass-green: #67BB6E;
+  --color-bg-sea-green: #0DBDBA;
+  --color-bg-mint-green: #CCFFE5;
+  --card-height: 400px;
+  --card-width: 500px;
+  --border-radius: 20px;
+  --scroll-container-height: auto; 
+  --scroll-speed: 1s; 
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Noto Sans';
+}
+
+.flip-elem {
+  transform: rotateX(180deg);
+}
+
+.show-content {
+  display: block;
+  animation: animate-content var(--animation-speed);
+}
+
+div.open {
+  display: block;
+}
+
+.scroll-container {
+  height: var(--scroll-container-height);
+  overflow: hidden;
+}
+
+.scroll-content {
+  height: 100%;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-align: left;
+  
+  /* animation properties */
+  -moz-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  
+  -moz-animation: scroll-content var(--scroll-speed) forwards ease;
+  -webkit-animation: scroll-content var(--scroll-speed) forwards ease;
+  animation: scroll-content var(--scroll-speed) forwards ease;
+}
+
+.pfe-grid {
+  display: grid;
+  grid-template-columns: .5fr 1fr;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 50px;
+  left: 50%;
+  transform: translateX(-43%);
+}
+
+.pfe-quiz__container {
+  position: relative;
+  top: 1%;
+}
+
+.pfequiz__text {
+  position: relative;
+  top: -50px;
+  height: 468px;
+  margin: auto;
+  font-size: 32px;
+}
+
+.pfequiz__title,
+.pfequiz__description {
+  width: 375px;
+  line-height: 1.2;
+  position: relative;
+  left: 105px;
+  top: 60px;
+}
+
+.pfequiz__title {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.pfequiz__description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  font-size: 0.6em;
+  margin: 0;  
+  overflow: hidden;
+  padding: 0 4ch;
+  line-height: 1.2;
+  text-indent: -7px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.pfequiz__description__bg {
+  position: absolute;
+  top: 150px;
+  max-width: 100%;
+  display: block;
+}
+
+.pfequiz__media {
+  height: 150px;
+  display: block;
+  margin: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+.pfefilpcard {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pfefilpcard video {
+  width: 100%;
+}
+
+.pfefilpcard__front,
+.pfeflipcard__back {
+  height: var(--card-height);
+  width: 100%;
+  max-width: var(--card-width);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  padding: 20px 10px;
+  display: flex;
+  place-items: center;
+  border-radius: var(--border-radius);
+}
+
+.pfefilpcard__front {
+  position: absolute;
+  text-align: center;
+}
+
+.pfeflipcard__back {
+  transform: rotateX(180deg);
+}
+
+.pfequiz__title {
+  position: relative;
+  top: 18%;
+  left: 18%;
+  transform: translate(-20%, -30%);
+  z-index: 100;
+}
+
+.pfeflipcard__text {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: var(--card-width);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: none;
+  margin: 0 auto;
+  position: relative;
+}
+
+.pfefilpcard img {
+  display: block;
+  margin-inline: auto;
+  max-width: 100%; 
+}
+
+@keyframes animate-content {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-content {
+  0% {
+    -moz-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+      -moz-transform: translateY(0);
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@media (max-width: 50em) {
+  .pfe-grid {
+    grid-template-columns: 1fr;
+    transform: translateX(-50%);
+  }
+
+  .pfe-quiz__container {
+    height: 35vh;
+  }
+
+  .pfequiz__title {
+    top: 20%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+  }
+
+  .pfequiz__description {
+    transform: translate(-50%, -45%);
+  }
+}
